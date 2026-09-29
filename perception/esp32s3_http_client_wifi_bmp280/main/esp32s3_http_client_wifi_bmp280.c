@@ -20,17 +20,17 @@
 #endif
 
 
-#define WIFI_SSID       ""
-#define WIFI_PASSWORD   ""
+#define WIFI_SSID       "MOVISTAR-WIFI6-4598"
+#define WIFI_PASSWORD   "8780170034"
 
-#define SERVER_URL      "http://192.168.1.101:8080/measurement"
+#define SERVER_URL      "http://192.168.1.97:8080/measurement"
 
 #define DEVICE_ID "01"
 
 #define WIFI_CONNECTED_BIT BIT0
 
-#define I2C_MASTER_SDA 8
-#define I2C_MASTER_SCL 9
+#define I2C_MASTER_SDA 20
+#define I2C_MASTER_SCL 21
 
 static const char *TAG = "HTTP_TEST";
 static EventGroupHandle_t wifi_event_group;

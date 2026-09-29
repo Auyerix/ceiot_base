@@ -1,0 +1,238 @@
+## ESP32-S3 + BMP280 con ESP-IDF
+
+### 1. Cargar el entorno ESP-IDF
+
+Cada vez que se abre una nueva terminal:
+
+```bash
+source ~/esp/esp-idf/export.sh
+```
+
+Puede verificarse el entorno con:
+
+```bash
+idf.py --version
+```
+
+---
+
+### 2. Crear el proyecto
+
+Ubicarse en el directorio donde se desea crear el proyecto y ejecutar:
+
+```bash
+idf.py create-project esp32s3_bmp280
+cd esp32s3_bmp280
+```
+
+La estructura inicial contiene, entre otros:
+
+```text
+esp32s3_bmp280/
+├── CMakeLists.txt
+└── main/
+    ├── CMakeLists.txt
+    └── esp32s3_bmp280.c
+```
+
+---
+
+### 3. Agregar la dependencia BMP280
+
+Agregar el componente `bmp280`:
+
+```bash
+idf.py add-dependency "esp-idf-lib/bmp280"
+```
+
+ESP-IDF registra la dependencia en:
+
+```text
+main/idf_component.yml
+```
+
+y durante la configuración descarga los componentes requeridos dentro de:
+
+```text
+managed_components/
+```
+
+El archivo `idf_component.yml` queda con una estructura equivalente a:
+
+```yaml
+dependencies:
+  idf:
+    version: '>=4.1.0'
+  esp-idf-lib/bmp280: '*'
+```
+
+Los archivos ubicados en `managed_components` son administrados por ESP-IDF y no deben modificarse para este ejercicio.
+
+---
+
+### 4. Seleccionar el microcontrolador
+
+La placa utilizada posee un **ESP32-S3**, por lo tanto:
+
+```bash
+idf.py set-target esp32s3
+```
+
+Si existe un directorio `build` anterior incompatible y `set-target` no puede eliminarlo:
+
+```bash
+rm -rf build
+idf.py set-target esp32s3
+```
+
+---
+
+### 5. Copiar el ejemplo del componente BMP280
+
+El componente descargado incluye un ejemplo funcional. Copiar su `main.c` sobre el archivo principal de nuestro proyecto:
+
+```bash
+cp managed_components/esp-idf-lib__bmp280/examples/default/main/main.c main/esp32s3_bmp280.c
+```
+
+A partir de este momento se trabaja sobre:
+
+```text
+main/esp32s3_bmp280.c
+```
+
+y no sobre los archivos de `managed_components`.
+
+---
+
+### 6. Configurar los pines I²C
+
+Para la conexión utilizada:
+
+```text
+BMP280        ESP32-S3
+----------------------
+SDA     →     GPIO20
+SCL     →     GPIO21
+```
+
+En `main/esp32s3_bmp280.c`, definir:
+
+```c
+#define I2C_MASTER_SDA 20
+#define I2C_MASTER_SCL 21
+```
+
+Luego utilizar estos valores en la inicialización del BMP280:
+
+```c
+ESP_ERROR_CHECK(
+    bmp280_init_desc(
+        &dev,
+        BMP280_I2C_ADDRESS_0,
+        0,
+        I2C_MASTER_SDA,
+        I2C_MASTER_SCL
+    )
+);
+```
+
+Esto reemplaza en el ejemplo la utilización de:
+
+```c
+CONFIG_EXAMPLE_I2C_MASTER_SDA
+CONFIG_EXAMPLE_I2C_MASTER_SCL
+```
+
+De esta manera los GPIO utilizados por este ejercicio quedan definidos explícitamente en el código fuente.
+
+---
+
+### 7. Compilar
+
+Desde el directorio raíz del proyecto:
+
+```bash
+idf.py build
+```
+
+La compilación debe finalizar sin errores.
+
+---
+
+### 8. Verificar el puerto serie
+
+Con la placa conectada:
+
+```bash
+ls /dev/ttyACM*
+```
+
+En este caso el dispositivo utilizado es:
+
+```text
+/dev/ttyACM0
+```
+
+---
+
+### 9. Grabar el firmware
+
+```bash
+idf.py -p /dev/ttyACM0 flash
+```
+
+También puede compilarse y grabarse en una sola secuencia:
+
+```bash
+idf.py build
+idf.py -p /dev/ttyACM0 flash
+```
+
+---
+
+### 10. Ejecutar el monitor serie
+
+```bash
+idf.py -p /dev/ttyACM0 monitor
+```
+
+Para salir del monitor:
+
+```text
+Ctrl + ]
+```
+
+También puede realizarse grabación y monitorización consecutivamente:
+
+```bash
+idf.py -p /dev/ttyACM0 flash monitor
+```
+
+---
+
+### 11. Resultado
+
+Con el BMP280 correctamente conectado por I²C, el programa comienza a mostrar periódicamente en el monitor serie las variables medidas por el sensor, entre ellas:
+
+```text
+Temperature
+Pressure
+```
+
+Con esto queda verificado el flujo completo:
+
+```text
+ESP-IDF
+   ↓
+Proyecto esp32s3_bmp280
+   ↓
+Componente bmp280
+   ↓
+Bus I²C
+   ↓
+ESP32-S3 ↔ BMP280
+   ↓
+Temperatura y presión
+```
+

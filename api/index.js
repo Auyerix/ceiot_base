@@ -10,6 +10,8 @@ const db = PgMem.newDb();
 
 let database = null;
 const collectionName = "measurements";
+const WEATHER_URL = "https://api.open-meteo.com/v1/forecast?latitude=-35.025&longitude=-58.423&current=temperature_2m,surface_pressure&timezone=America%2FArgentina%2FBuenos_Aires";
+let weatherRequestInProgress = false;
 
 async function startDatabase() {
     const uri = "mongodb://localhost:27017/?maxPoolSize=20&w=majority";	
@@ -31,6 +33,38 @@ async function getMeasurements() {
     return await database.collection(collectionName).find({}).toArray();	
 }
 
+async function insertExternalWeatherMeasurement() {
+    if (weatherRequestInProgress) return;
+
+    weatherRequestInProgress = true;
+    try {
+        const response = await fetch(WEATHER_URL);
+        if (!response.ok) {
+            throw new Error("Open-Meteo request failed with status " + response.status);
+        }
+
+        const weather = await response.json();
+        const current = weather.current;
+        if (!Number.isFinite(current?.temperature_2m) || !Number.isFinite(current?.surface_pressure)) {
+            throw new Error("Open-Meteo response is missing temperature or pressure");
+        }
+
+        const timestamp = new Date();
+        const insertedId = await insertMeasurement({
+            id: "00",
+            t: current.temperature_2m,
+            p: current.surface_pressure,
+            timestamp: timestamp
+        });
+
+        console.log("device id: 00 temperature: " + current.temperature_2m + " C pressure: " + current.surface_pressure + " hPa timestamp: " + timestamp.toISOString() + " inserted: " + insertedId);
+    } catch (error) {
+        console.error("Error fetching external weather measurement:", error);
+    } finally {
+        weatherRequestInProgress = false;
+    }
+}
+
 // API Server
 
 const app = express();
@@ -41,10 +75,22 @@ app.use(express.static('spa/static'));
 
 const PORT = 8080;
 
-app.post('/measurement', function (req, res) {
--       console.log("device id    : " + req.body.id + " key         : " + req.body.key + " temperature : " + req.body.t + " humidity    : " + req.body.h);	
-    const {insertedId} = insertMeasurement({id:req.body.id, t:req.body.t, h:req.body.h});
-	res.send("received measurement into " +  insertedId);
+app.post('/measurement', async function (req, res) {
+    try {
+        const timestamp = new Date();
+        console.log("device id: " + req.body.id + " temperature: " + req.body.t + " humidity: " + req.body.h + " timestamp: " + timestamp.toISOString());
+
+        const insertedId = await insertMeasurement({
+            id: req.body.id,
+            t: req.body.t,
+            h: req.body.h,
+            timestamp: timestamp
+        });
+        res.send("received measurement into " + insertedId);
+    } catch (error) {
+        console.error("Error saving measurement:", error);
+        res.status(500).send("could not save measurement");
+    }
 });
 
 app.post('/device', function (req, res) {
@@ -121,6 +167,8 @@ startDatabase().then(async() => {
     await insertMeasurement({id:'00', t:'17', h:'77'});
     await insertMeasurement({id:'01', t:'17', h:'77'});
     console.log("mongo measurement database Up");
+    void insertExternalWeatherMeasurement();
+    setInterval(insertExternalWeatherMeasurement, 30_000);
 
     db.public.none("CREATE TABLE devices (device_id VARCHAR, name VARCHAR, key VARCHAR)");
     db.public.none("INSERT INTO devices VALUES ('00', 'Fake Device 00', '123456')");
