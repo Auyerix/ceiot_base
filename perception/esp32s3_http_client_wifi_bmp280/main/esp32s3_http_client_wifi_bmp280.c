@@ -232,13 +232,15 @@ static void http_get(void)
  * --------------------------------------------------------- */
 
 
-static char *POST_DATA_TEMPLATE = "id="DEVICE_ID"&t=%0.2f&h=%0.2f";
+//static char *POST_DATA_TEMPLATE = "id="DEVICE_ID"&t=%0.2f&h=%0.2f";
+static char *POST_DATA_TEMPLATE = "id="DEVICE_ID"&t=%0.2f&p=%0.2f";
 
 static void http_post(float *pressure, float *temperature, float *humidity) {
 
     char post_data[64];
 
-    sprintf(post_data,POST_DATA_TEMPLATE, *temperature, *humidity);
+    //sprintf(post_data,POST_DATA_TEMPLATE, *temperature, *humidity);
+    sprintf(post_data,POST_DATA_TEMPLATE, *temperature, *pressure);
 
     ESP_LOGI(TAG, "POST %s", SERVER_URL);
     ESP_LOGI(TAG, "POST_DATA %s", post_data);

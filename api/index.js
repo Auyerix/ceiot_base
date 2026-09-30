@@ -53,7 +53,7 @@ async function insertExternalWeatherMeasurement() {
         const insertedId = await insertMeasurement({
             id: "00",
             t: current.temperature_2m,
-            p: current.surface_pressure,
+            p: current.surface_pressure*100,
             timestamp: timestamp
         });
 
@@ -70,6 +70,8 @@ async function insertExternalWeatherMeasurement() {
 const app = express();
 
 app.use(bodyParser.urlencoded({extended:false}));
+//agregodo de parser JSON GA
+app.use(express.json());
 
 app.use(express.static('spa/static'));
 
@@ -78,12 +80,14 @@ const PORT = 8080;
 app.post('/measurement', async function (req, res) {
     try {
         const timestamp = new Date();
-        console.log("device id: " + req.body.id + " temperature: " + req.body.t + " humidity: " + req.body.h + " timestamp: " + timestamp.toISOString());
+        //console.log("device id: " + req.body.id + " temperature: " + req.body.t + " humidity1: " + req.body.h + " timestamp: " + timestamp.toISOString());
+        console.log("device id: " + req.body.id + " temperature: " + req.body.t + " pressure: " + req.body.p + " timestamp: " + timestamp.toISOString());
 
         const insertedId = await insertMeasurement({
             id: req.body.id,
             t: req.body.t,
-            h: req.body.h,
+            //h: req.body.h,
+            p: req.body.p,
             timestamp: timestamp
         });
         res.send("received measurement into " + insertedId);
@@ -157,15 +161,48 @@ app.get('/device', function(req,res) {
     res.send( db.public.many("SELECT * FROM devices") );
 });
 
+
+/// Nuevo endpoint
+app.post('/measurements', async function (req, res) {
+    try {
+        const measurements = req.body;
+
+        if (!Array.isArray(measurements)) {
+            return res.status(400).send("expected an array of measurements");
+        }
+
+        const timestamp = new Date();
+
+        const documents = measurements.map(m => ({
+            id: m.id,
+            t: m.t,
+            p: m.p,
+            timestamp: timestamp
+        }));
+
+        const result = await database
+            .collection(collectionName)
+            .insertMany(documents);
+
+        console.log("received " + result.insertedCount + " measurements");
+
+        res.send("received " + result.insertedCount + " measurements");
+
+    } catch (error) {
+        console.error("Error saving measurements:", error);
+        res.status(500).send("could not save measurements");
+    }
+});
+
 startDatabase().then(async() => {
 
     const addAdminEndpoint = require("./admin.js");
     addAdminEndpoint(app, render);
 
-    await insertMeasurement({id:'00', t:'18', h:'78'});
-    await insertMeasurement({id:'00', t:'19', h:'77'});
-    await insertMeasurement({id:'00', t:'17', h:'77'});
-    await insertMeasurement({id:'01', t:'17', h:'77'});
+    await insertMeasurement({id:'00', t:'18', p:'78'});
+    await insertMeasurement({id:'00', t:'19', p:'77'});
+    await insertMeasurement({id:'00', t:'17', p:'77'});
+    await insertMeasurement({id:'01', t:'17', p:'77'});
     console.log("mongo measurement database Up");
     void insertExternalWeatherMeasurement();
     setInterval(insertExternalWeatherMeasurement, 30_000);
