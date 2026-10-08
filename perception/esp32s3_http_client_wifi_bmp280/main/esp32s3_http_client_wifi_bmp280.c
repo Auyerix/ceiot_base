@@ -19,9 +19,9 @@
 #define APP_CPU_NUM PRO_CPU_NUM
 #endif
 
+#include "wifi_credentials.h"
 
-#define WIFI_SSID       "MOVISTAR-WIFI6-4598"
-#define WIFI_PASSWORD   "8780170034"
+
 
 #define SERVER_URL      "http://192.168.1.97:8080/measurement"
 
