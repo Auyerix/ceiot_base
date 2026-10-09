@@ -79,16 +79,29 @@ const PORT = 8080;
 
 app.post('/measurement', async function (req, res) {
     try {
+        // Keep server reception time and optional device time separately.
         const timestamp = new Date();
+        const deviceTimestamp = req.body.timestamp;
+        if (deviceTimestamp !== undefined &&
+            (typeof deviceTimestamp !== 'string' || deviceTimestamp.trim() === '')) {
+            return res.status(400).send("timestamp must be a valid date string, e.g. 2026-10-08T15:30:00Z");
+        }
+        const deviceDate = deviceTimestamp === undefined
+            ? null
+            : new Date(deviceTimestamp);
+        if (deviceDate !== null && Number.isNaN(deviceDate.getTime())) {
+            return res.status(400).send("timestamp must be a valid date string, e.g. 2026-10-08T15:30:00Z");
+        }
         //console.log("device id: " + req.body.id + " temperature: " + req.body.t + " humidity1: " + req.body.h + " timestamp: " + timestamp.toISOString());
-        console.log("device id: " + req.body.id + " temperature: " + req.body.t + " pressure: " + req.body.p + " timestamp: " + timestamp.toISOString());
+        console.log("device id: " + req.body.id + " temperature: " + req.body.t + " pressure: " + req.body.p + " timestamp: " + timestamp.toISOString() + " deviceTimestamp: " + (deviceDate === null ? "not provided" : deviceDate.toISOString()));
 
         const insertedId = await insertMeasurement({
             id: req.body.id,
             t: req.body.t,
             //h: req.body.h,
             p: req.body.p,
-            timestamp: timestamp
+            timestamp: timestamp,
+            deviceTimestamp: deviceDate
         });
         res.send("received measurement into " + insertedId);
     } catch (error) {
@@ -96,6 +109,10 @@ app.post('/measurement', async function (req, res) {
         res.status(500).send("could not save measurement");
     }
 });
+
+
+
+
 
 app.post('/device', function (req, res) {
 	console.log("device id    : " + req.body.id + " name        : " + req.body.n + " key         : " + req.body.k );
@@ -162,23 +179,45 @@ app.get('/device', function(req,res) {
 });
 
 
+
+
 /// Nuevo endpoint
 app.post('/measurements', async function (req, res) {
     try {
         const measurements = req.body;
 
-        if (!Array.isArray(measurements)) {
-            return res.status(400).send("expected an array of measurements");
+        if (!Array.isArray(measurements) || measurements.length === 0) {
+            return res.status(400).send("expected a non-empty array of measurements");
         }
 
         const timestamp = new Date();
 
-        const documents = measurements.map(m => ({
-            id: m.id,
-            t: m.t,
-            p: m.p,
-            timestamp: timestamp
-        }));
+        const documents = [];
+        for (const [index, m] of measurements.entries()) {
+            if (m === null || typeof m !== 'object' || Array.isArray(m)) {
+                return res.status(400).send("measurement at index " + index + " must be an object");
+            }
+
+            const deviceTimestamp = m.timestamp;
+            if (deviceTimestamp !== undefined &&
+                (typeof deviceTimestamp !== 'string' || deviceTimestamp.trim() === '')) {
+                return res.status(400).send("timestamp at index " + index + " must be a valid date string, e.g. 2026-10-08T15:30:00Z");
+            }
+            const deviceDate = deviceTimestamp === undefined
+                ? null
+                : new Date(deviceTimestamp);
+            if (deviceDate !== null && Number.isNaN(deviceDate.getTime())) {
+                return res.status(400).send("timestamp at index " + index + " must be a valid date string, e.g. 2026-10-08T15:30:00Z");
+            }
+
+            documents.push({
+                id: m.id,
+                t: m.t,
+                p: m.p,
+                timestamp: timestamp,
+                deviceTimestamp: deviceDate
+            });
+        }
 
         const result = await database
             .collection(collectionName)

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/event_groups.h"
@@ -8,6 +9,7 @@
 #include "esp_event.h"
 #include "esp_log.h"
 #include "esp_netif.h"
+#include "esp_netif_sntp.h"
 #include "esp_wifi.h"
 #include "nvs_flash.h"
 
@@ -19,13 +21,13 @@
 #define APP_CPU_NUM PRO_CPU_NUM
 #endif
 
+
 #include "wifi_credentials.h"
-
-
 
 #define SERVER_URL      "http://192.168.1.97:8080/measurement"
 
 #define DEVICE_ID "01"
+#define NTP_SERVER "pool.ntp.org"
 
 #define WIFI_CONNECTED_BIT BIT0
 
@@ -51,11 +53,11 @@ void bmp280_test(bmp280_t *dev)
     printf("BMP280: found %s\n", bme280p ? "BME280" : "BMP280");
 }
 
-void bmp280_read(bmp280_t *dev, float *pressure, float *temperature, float *humidity) {
+bool bmp280_read(bmp280_t *dev, float *pressure, float *temperature, float *humidity) {
 
     if (bmp280_read_float(dev, temperature, pressure, humidity) != ESP_OK) {
         printf("Temperature/pressure reading failed\n");
-        return;
+        return false;
     }
 
     printf("Pressure: %.2f Pa, Temperature: %.2f C", *pressure, *temperature);
@@ -65,6 +67,8 @@ void bmp280_read(bmp280_t *dev, float *pressure, float *temperature, float *humi
         printf(", Humidity: %.2f\n", *humidity);
     else
         printf("\n");
+
+    return true;
 }
 
 
@@ -162,6 +166,22 @@ static void wifi_init(void)
     ESP_LOGI(TAG, "Connecting to WiFi...");
 }
 
+/* Synchronize the device clock before timestamping measurements.
+ * Keep SNTP running for periodic clock updates. */
+static void clock_init(void)
+{
+    esp_sntp_config_t config = ESP_NETIF_SNTP_DEFAULT_CONFIG(NTP_SERVER);
+    ESP_ERROR_CHECK(esp_netif_sntp_init(&config));
+
+    ESP_LOGI(TAG, "Synchronizing device clock with %s...", NTP_SERVER);
+    esp_err_t err;
+    while ((err = esp_netif_sntp_sync_wait(pdMS_TO_TICKS(10000))) == ESP_ERR_TIMEOUT) {
+        ESP_LOGW(TAG, "Waiting for NTP time; measurements have not started yet");
+    }
+    ESP_ERROR_CHECK(err);
+    ESP_LOGI(TAG, "Device clock synchronized");
+}
+
 /* -----------------------------------------------------------
  * HTTP event
  * --------------------------------------------------------- */
@@ -232,15 +252,26 @@ static void http_get(void)
  * --------------------------------------------------------- */
 
 
-//static char *POST_DATA_TEMPLATE = "id="DEVICE_ID"&t=%0.2f&h=%0.2f";
-static char *POST_DATA_TEMPLATE = "id="DEVICE_ID"&t=%0.2f&p=%0.2f";
+static const char *POST_DATA_TEMPLATE = "id="DEVICE_ID"&t=%0.2f&p=%0.2f&timestamp=%s";
 
-static void http_post(float *pressure, float *temperature, float *humidity) {
+static void http_post(float *pressure, float *temperature, time_t measured_at) {
 
-    char post_data[64];
+    char device_timestamp[21];
+    struct tm utc_time;
+    if (gmtime_r(&measured_at, &utc_time) == NULL ||
+        strftime(device_timestamp, sizeof(device_timestamp),
+                 "%Y-%m-%dT%H:%M:%SZ", &utc_time) == 0) {
+        ESP_LOGE(TAG, "Could not format device timestamp");
+        return;
+    }
 
-    //sprintf(post_data,POST_DATA_TEMPLATE, *temperature, *humidity);
-    sprintf(post_data,POST_DATA_TEMPLATE, *temperature, *pressure);
+    char post_data[160];
+    int length = snprintf(post_data, sizeof(post_data), POST_DATA_TEMPLATE,
+                          *temperature, *pressure, device_timestamp);
+    if (length < 0 || (size_t)length >= sizeof(post_data)) {
+        ESP_LOGE(TAG, "Measurement exceeds POST buffer size");
+        return;
+    }
 
     ESP_LOGI(TAG, "POST %s", SERVER_URL);
     ESP_LOGI(TAG, "POST_DATA %s", post_data);
@@ -319,12 +350,15 @@ void app_main(void)
 
     ESP_LOGI(TAG, "WiFi connected");
 
-    vTaskDelay(pdMS_TO_TICKS(1000));
+    clock_init();
 
     float pressure, temperature, humidity;
     while (1) { 
-       bmp280_read(&dev, &pressure, &temperature, &humidity);
-       http_post(&pressure, &temperature, &humidity);
+       if (bmp280_read(&dev, &pressure, &temperature, &humidity)) {
+           time_t measured_at = time(NULL);
+           http_post(&pressure, &temperature, measured_at);
+       }
        vTaskDelay(pdMS_TO_TICKS(5000));
     }
 }
+
