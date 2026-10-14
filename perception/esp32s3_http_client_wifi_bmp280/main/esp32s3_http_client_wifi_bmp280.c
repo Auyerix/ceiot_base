@@ -168,6 +168,8 @@ static void wifi_init(void)
 
 /* Synchronize the device clock before timestamping measurements.
  * Keep SNTP running for periodic clock updates. */
+ /*Warning: es bloqueante, habría que definir que hacer en caso de falla de
+ conexión*/
 static void clock_init(void)
 {
     esp_sntp_config_t config = ESP_NETIF_SNTP_DEFAULT_CONFIG(NTP_SERVER);
@@ -278,7 +280,7 @@ static void http_post(float *pressure, float *temperature, time_t measured_at) {
 
     esp_http_client_config_t config = {
         .url = SERVER_URL,
-        .event_handler = http_event_handler,
+        .event_handler = http_event_handler, //GA:Callback
     };
 
     esp_http_client_handle_t client =

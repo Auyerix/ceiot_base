@@ -1,0 +1,7 @@
+{
+    "idf.currentSetup": "C:\\Users\\gusta\\esp\\v5.5.1\\esp-idf",
+    "C_Cpp.default.compilerPath": "C:/Users/gusta/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe",
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
+    "idf.flashType": "UART",
+    "idf.port": "COM4"
+}

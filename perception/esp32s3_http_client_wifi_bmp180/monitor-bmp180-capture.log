@@ -1,0 +1,1230 @@
+I (250) esp_image: segment 4: paddr=000e87b4 vaddr=4037dd5c size=0ccc8h ( 52424) load
+I (262) esp_image: segment 5: paddr=000f5484 vaddr=50000000 size=00020h (    32) load
+I (271) boot: Loaded app from partition at offset 0x10000
+I (271) boot: Disabling RNG early entropy source...
+I (281) cpu_start: Multicore app
+I (290) cpu_start: Pro cpu start user code
+I (290) cpu_start: cpu freq: 160000000 Hz
+I (290) app_init: Application information:
+I (291) app_init: Project name:     esp32s3_http_client_wifi_bmp180
+I (296) app_init: App version:      1
+I (300) app_init: Compile time:     Oct 14 2026 12:45:00
+I (305) app_init: ELF file SHA256:  0f172522a...
+I (309) app_init: ESP-IDF:          v5.5.1
+I (313) efuse_init: Min chip rev:     v0.0
+I (317) efuse_init: Max chip rev:     v0.99 
+I (321) efuse_init: Chip rev:         v0.2
+I (325) heap_init: Initializing. RAM available for dynamic allocation:
+I (331) heap_init: At 3FCA3940 len 00045DD0 (279 KiB): RAM
+I (336) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (341) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (346) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (353) spi_flash: detected chip: boya
+I (355) spi_flash: flash io: dio
+W (358) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (371) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (377) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (384) main_task: Started on CPU0
+I (404) main_task: Calling app_main()
+I (414) HTTP_TEST: bmp180 init...
+I (414) i2cdev: [Port 0] First initialization. Configuring bus with SDA=20, SCL=21 (Pullups SCL:0 SDA:0)
+W (414) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs
+I (424) i2cdev: [Port 0] Successfully installed I2C master bus (Handle: 0x3fcea054).
+I (434) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (444) i2c.master: I2C transaction unexpected nack detected
+E (454) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (454) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (464) i2cdev: [0x77 at 0] I2C op failed (Try 0, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (474) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (484) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (524) i2cdev: [0x77 at 0] Retrying operation...
+I (524) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (524) i2c.master: I2C transaction unexpected nack detected
+E (524) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (534) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (544) i2cdev: [0x77 at 0] I2C op failed (Try 1, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (554) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (554) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (644) i2cdev: [0x77 at 0] Retrying operation...
+I (644) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (644) i2c.master: I2C transaction unexpected nack detected
+E (644) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (654) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (664) i2cdev: [0x77 at 0] I2C op failed (Try 2, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (674) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (674) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (844) i2cdev: [0x77 at 0] Retrying operation...
+I (844) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (844) i2c.master: I2C transaction unexpected nack detected
+E (844) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (854) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (864) i2cdev: [0x77 at 0] I2C op failed (Try 3, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (874) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (874) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+E (884) i2cdev: [0x77 at 0] I2C operation failed after 4 retries. Last error: 259 (ESP_ERR_INVALID_STATE)
+ESP_ERROR_CHECK failed: esp_err_t 0x103 (ESP_ERR_INVALID_STATE) at 0x4200ade5
+file: "./main/esp32s3_http_client_wifi_bmp180.c" line 50
+func: sensor_init
+expression: bmp180_init(dev)
+
+abort() was called at PC 0x4037c203 on core 0
+
+
+Backtrace: 0x4037c245:0x3fca7310 0x4037c20d:0x3fca7330 0x40384665:0x3fca7350 0x4037c203:0x3fca73c0 0x4200ade5:0x3fca73f0 0x4200b35e:0x3fca7410 0x420a7944:0x3fca7490 0x4037cf35:0x3fca74c0
+
+
+
+
+ELF file SHA256: 0f172522a
+
+Rebooting...
+ø€€ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4037c394
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x158c
+load:0x403c8700,len:0xd24
+load:0x403cb700,len:0x2f34
+entry 0x403c8924
+I (29) boot: ESP-IDF v5.5.1 2nd stage bootloader
+I (29) boot: compile time Oct 14 2026 12:47:31
+I (29) boot: Multicore bootloader
+I (29) boot: chip revision: v0.2
+I (32) boot: efuse block revision: v1.4
+I (36) boot.esp32s3: Boot SPI Speed : 80MHz
+I (40) boot.esp32s3: SPI Mode       : DIO
+I (43) boot.esp32s3: SPI Flash Size : 2MB
+I (47) boot: Enabling RNG early entropy source...
+I (52) boot: Partition Table:
+I (54) boot: ## Label            Usage          Type ST Offset   Length
+I (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (73) boot:  2 factory          factory app      00 00 00010000 00100000
+I (80) boot: End of partition table
+I (83) esp_image: segment 0: paddr=00010020 vaddr=3c0b0020 size=21808h (137224) map
+I (115) esp_image: segment 1: paddr=00031830 vaddr=3fc9ab00 size=04a84h ( 19076) load
+I (119) esp_image: segment 2: paddr=000362bc vaddr=40374000 size=09d5ch ( 40284) load
+I (128) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=a878ch (690060) map
+I (250) esp_image: segment 4: paddr=000e87b4 vaddr=4037dd5c size=0ccc8h ( 52424) load
+I (262) esp_image: segment 5: paddr=000f5484 vaddr=50000000 size=00020h (    32) load
+I (271) boot: Loaded app from partition at offset 0x10000
+I (271) boot: Disabling RNG early entropy source...
+I (281) cpu_start: Multicore app
+I (290) cpu_start: Pro cpu start user code
+I (290) cpu_start: cpu freq: 160000000 Hz
+I (290) app_init: Application information:
+I (291) app_init: Project name:     esp32s3_http_client_wifi_bmp180
+I (296) app_init: App version:      1
+I (300) app_init: Compile time:     Oct 14 2026 12:45:00
+I (305) app_init: ELF file SHA256:  0f172522a...
+I (309) app_init: ESP-IDF:          v5.5.1
+I (313) efuse_init: Min chip rev:     v0.0
+I (317) efuse_init: Max chip rev:     v0.99 
+I (321) efuse_init: Chip rev:         v0.2
+I (325) heap_init: Initializing. RAM available for dynamic allocation:
+I (331) heap_init: At 3FCA3940 len 00045DD0 (279 KiB): RAM
+I (336) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (341) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (346) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (353) spi_flash: detected chip: boya
+I (355) spi_flash: flash io: dio
+W (358) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (371) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (377) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (384) main_task: Started on CPU0
+I (404) main_task: Calling app_main()
+I (414) HTTP_TEST: bmp180 init...
+I (414) i2cdev: [Port 0] First initialization. Configuring bus with SDA=20, SCL=21 (Pullups SCL:0 SDA:0)
+W (414) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs
+I (424) i2cdev: [Port 0] Successfully installed I2C master bus (Handle: 0x3fcea054).
+I (434) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (444) i2c.master: I2C transaction unexpected nack detected
+E (454) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (454) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (464) i2cdev: [0x77 at 0] I2C op failed (Try 0, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (474) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (484) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (524) i2cdev: [0x77 at 0] Retrying operation...
+I (524) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (524) i2c.master: I2C transaction unexpected nack detected
+E (524) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (534) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (544) i2cdev: [0x77 at 0] I2C op failed (Try 1, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (554) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (554) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (644) i2cdev: [0x77 at 0] Retrying operation...
+I (644) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (644) i2c.master: I2C transaction unexpected nack detected
+E (644) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (654) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (664) i2cdev: [0x77 at 0] I2C op failed (Try 2, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (674) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (674) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (844) i2cdev: [0x77 at 0] Retrying operation...
+I (844) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (844) i2c.master: I2C transaction unexpected nack detected
+E (844) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (854) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (864) i2cdev: [0x77 at 0] I2C op failed (Try 3, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (874) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (874) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+E (884) i2cdev: [0x77 at 0] I2C operation failed after 4 retries. Last error: 259 (ESP_ERR_INVALID_STATE)
+ESP_ERROR_CHECK failed: esp_err_t 0x103 (ESP_ERR_INVALID_STATE) at 0x4200ade5
+file: "./main/esp32s3_http_client_wifi_bmp180.c" line 50
+func: sensor_init
+expression: bmp180_init(dev)
+
+abort() was called at PC 0x4037c203 on core 0
+
+
+Backtrace: 0x4037c245:0x3fca7310 0x4037c20d:0x3fca7330 0x40384665:0x3fca7350 0x4037c203:0x3fca73c0 0x4200ade5:0x3fca73f0 0x4200b35e:0x3fca7410 0x420a7944:0x3fca7490 0x4037cf35:0x3fca74c0
+
+
+
+
+ELF file SHA256: 0f172522a
+
+Rebooting...
+ø€€ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4037c394
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x158c
+load:0x403c8700,len:0xd24
+load:0x403cb700,len:0x2f34
+entry 0x403c8924
+I (29) boot: ESP-IDF v5.5.1 2nd stage bootloader
+I (29) boot: compile time Oct 14 2026 12:47:31
+I (29) boot: Multicore bootloader
+I (29) boot: chip revision: v0.2
+I (32) boot: efuse block revision: v1.4
+I (36) boot.esp32s3: Boot SPI Speed : 80MHz
+I (40) boot.esp32s3: SPI Mode       : DIO
+I (43) boot.esp32s3: SPI Flash Size : 2MB
+I (47) boot: Enabling RNG early entropy source...
+I (52) boot: Partition Table:
+I (54) boot: ## Label            Usage          Type ST Offset   Length
+I (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (73) boot:  2 factory          factory app      00 00 00010000 00100000
+I (80) boot: End of partition table
+I (83) esp_image: segment 0: paddr=00010020 vaddr=3c0b0020 size=21808h (137224) map
+I (115) esp_image: segment 1: paddr=00031830 vaddr=3fc9ab00 size=04a84h ( 19076) load
+I (119) esp_image: segment 2: paddr=000362bc vaddr=40374000 size=09d5ch ( 40284) load
+I (128) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=a878ch (690060) map
+I (250) esp_image: segment 4: paddr=000e87b4 vaddr=4037dd5c size=0ccc8h ( 52424) load
+I (262) esp_image: segment 5: paddr=000f5484 vaddr=50000000 size=00020h (    32) load
+I (271) boot: Loaded app from partition at offset 0x10000
+I (271) boot: Disabling RNG early entropy source...
+I (281) cpu_start: Multicore app
+I (290) cpu_start: Pro cpu start user code
+I (290) cpu_start: cpu freq: 160000000 Hz
+I (290) app_init: Application information:
+I (291) app_init: Project name:     esp32s3_http_client_wifi_bmp180
+I (296) app_init: App version:      1
+I (300) app_init: Compile time:     Oct 14 2026 12:45:00
+I (305) app_init: ELF file SHA256:  0f172522a...
+I (309) app_init: ESP-IDF:          v5.5.1
+I (313) efuse_init: Min chip rev:     v0.0
+I (317) efuse_init: Max chip rev:     v0.99 
+I (321) efuse_init: Chip rev:         v0.2
+I (325) heap_init: Initializing. RAM available for dynamic allocation:
+I (331) heap_init: At 3FCA3940 len 00045DD0 (279 KiB): RAM
+I (336) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (341) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (346) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (353) spi_flash: detected chip: boya
+I (355) spi_flash: flash io: dio
+W (358) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (371) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (377) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (384) main_task: Started on CPU0
+I (404) main_task: Calling app_main()
+I (414) HTTP_TEST: bmp180 init...
+I (414) i2cdev: [Port 0] First initialization. Configuring bus with SDA=20, SCL=21 (Pullups SCL:0 SDA:0)
+W (414) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs
+I (424) i2cdev: [Port 0] Successfully installed I2C master bus (Handle: 0x3fcea054).
+I (434) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (444) i2c.master: I2C transaction unexpected nack detected
+E (454) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (454) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (464) i2cdev: [0x77 at 0] I2C op failed (Try 0, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (474) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (484) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (524) i2cdev: [0x77 at 0] Retrying operation...
+I (524) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (524) i2c.master: I2C transaction unexpected nack detected
+E (524) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (534) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (544) i2cdev: [0x77 at 0] I2C op failed (Try 1, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (554) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (554) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (644) i2cdev: [0x77 at 0] Retrying operation...
+I (644) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (644) i2c.master: I2C transaction unexpected nack detected
+E (644) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (654) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (664) i2cdev: [0x77 at 0] I2C op failed (Try 2, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (674) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (674) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (844) i2cdev: [0x77 at 0] Retrying operation...
+I (844) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (844) i2c.master: I2C transaction unexpected nack detected
+E (844) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (854) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (864) i2cdev: [0x77 at 0] I2C op failed (Try 3, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (874) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (874) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+E (884) i2cdev: [0x77 at 0] I2C operation failed after 4 retries. Last error: 259 (ESP_ERR_INVALID_STATE)
+ESP_ERROR_CHECK failed: esp_err_t 0x103 (ESP_ERR_INVALID_STATE) at 0x4200ade5
+file: "./main/esp32s3_http_client_wifi_bmp180.c" line 50
+func: sensor_init
+expression: bmp180_init(dev)
+
+abort() was called at PC 0x4037c203 on core 0
+
+
+Backtrace: 0x4037c245:0x3fca7310 0x4037c20d:0x3fca7330 0x40384665:0x3fca7350 0x4037c203:0x3fca73c0 0x4200ade5:0x3fca73f0 0x4200b35e:0x3fca7410 0x420a7944:0x3fca7490 0x4037cf35:0x3fca74c0
+
+
+
+
+ELF file SHA256: 0f172522a
+
+Rebooting...
+ø€€ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4037c394
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x158c
+load:0x403c8700,len:0xd24
+load:0x403cb700,len:0x2f34
+entry 0x403c8924
+I (29) boot: ESP-IDF v5.5.1 2nd stage bootloader
+I (29) boot: compile time Oct 14 2026 12:47:31
+I (29) boot: Multicore bootloader
+I (29) boot: chip revision: v0.2
+I (32) boot: efuse block revision: v1.4
+I (36) boot.esp32s3: Boot SPI Speed : 80MHz
+I (40) boot.esp32s3: SPI Mode       : DIO
+I (43) boot.esp32s3: SPI Flash Size : 2MB
+I (47) boot: Enabling RNG early entropy source...
+I (52) boot: Partition Table:
+I (54) boot: ## Label            Usage          Type ST Offset   Length
+I (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (73) boot:  2 factory          factory app      00 00 00010000 00100000
+I (80) boot: End of partition table
+I (83) esp_image: segment 0: paddr=00010020 vaddr=3c0b0020 size=21808h (137224) map
+I (115) esp_image: segment 1: paddr=00031830 vaddr=3fc9ab00 size=04a84h ( 19076) load
+I (119) esp_image: segment 2: paddr=000362bc vaddr=40374000 size=09d5ch ( 40284) load
+I (128) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=a878ch (690060) map
+I (250) esp_image: segment 4: paddr=000e87b4 vaddr=4037dd5c size=0ccc8h ( 52424) load
+I (262) esp_image: segment 5: paddr=000f5484 vaddr=50000000 size=00020h (    32) load
+I (271) boot: Loaded app from partition at offset 0x10000
+I (271) boot: Disabling RNG early entropy source...
+I (281) cpu_start: Multicore app
+I (290) cpu_start: Pro cpu start user code
+I (290) cpu_start: cpu freq: 160000000 Hz
+I (290) app_init: Application information:
+I (291) app_init: Project name:     esp32s3_http_client_wifi_bmp180
+I (296) app_init: App version:      1
+I (300) app_init: Compile time:     Oct 14 2026 12:45:00
+I (305) app_init: ELF file SHA256:  0f172522a...
+I (309) app_init: ESP-IDF:          v5.5.1
+I (313) efuse_init: Min chip rev:     v0.0
+I (317) efuse_init: Max chip rev:     v0.99 
+I (321) efuse_init: Chip rev:         v0.2
+I (325) heap_init: Initializing. RAM available for dynamic allocation:
+I (331) heap_init: At 3FCA3940 len 00045DD0 (279 KiB): RAM
+I (336) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (341) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (346) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (353) spi_flash: detected chip: boya
+I (355) spi_flash: flash io: dio
+W (358) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (371) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (377) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (384) main_task: Started on CPU0
+I (404) main_task: Calling app_main()
+I (414) HTTP_TEST: bmp180 init...
+I (414) i2cdev: [Port 0] First initialization. Configuring bus with SDA=20, SCL=21 (Pullups SCL:0 SDA:0)
+W (414) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs
+I (424) i2cdev: [Port 0] Successfully installed I2C master bus (Handle: 0x3fcea054).
+I (434) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (444) i2c.master: I2C transaction unexpected nack detected
+E (454) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (454) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (464) i2cdev: [0x77 at 0] I2C op failed (Try 0, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (474) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (484) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (524) i2cdev: [0x77 at 0] Retrying operation...
+I (524) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (524) i2c.master: I2C transaction unexpected nack detected
+E (524) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (534) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (544) i2cdev: [0x77 at 0] I2C op failed (Try 1, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (554) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (554) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (644) i2cdev: [0x77 at 0] Retrying operation...
+I (644) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (644) i2c.master: I2C transaction unexpected nack detected
+E (644) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (654) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (664) i2cdev: [0x77 at 0] I2C op failed (Try 2, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (674) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (674) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (844) i2cdev: [0x77 at 0] Retrying operation...
+I (844) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (844) i2c.master: I2C transaction unexpected nack detected
+E (844) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (854) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (864) i2cdev: [0x77 at 0] I2C op failed (Try 3, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (874) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (874) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+E (884) i2cdev: [0x77 at 0] I2C operation failed after 4 retries. Last error: 259 (ESP_ERR_INVALID_STATE)
+ESP_ERROR_CHECK failed: esp_err_t 0x103 (ESP_ERR_INVALID_STATE) at 0x4200ade5
+file: "./main/esp32s3_http_client_wifi_bmp180.c" line 50
+func: sensor_init
+expression: bmp180_init(dev)
+
+abort() was called at PC 0x4037c203 on core 0
+
+
+Backtrace: 0x4037c245:0x3fca7310 0x4037c20d:0x3fca7330 0x40384665:0x3fca7350 0x4037c203:0x3fca73c0 0x4200ade5:0x3fca73f0 0x4200b35e:0x3fca7410 0x420a7944:0x3fca7490 0x4037cf35:0x3fca74c0
+
+
+
+
+ELF file SHA256: 0f172522a
+
+Rebooting...
+ø€€ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4037c394
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x158c
+load:0x403c8700,len:0xd24
+load:0x403cb700,len:0x2f34
+entry 0x403c8924
+I (29) boot: ESP-IDF v5.5.1 2nd stage bootloader
+I (29) boot: compile time Oct 14 2026 12:47:31
+I (29) boot: Multicore bootloader
+I (29) boot: chip revision: v0.2
+I (32) boot: efuse block revision: v1.4
+I (36) boot.esp32s3: Boot SPI Speed : 80MHz
+I (40) boot.esp32s3: SPI Mode       : DIO
+I (43) boot.esp32s3: SPI Flash Size : 2MB
+I (47) boot: Enabling RNG early entropy source...
+I (52) boot: Partition Table:
+I (54) boot: ## Label            Usage          Type ST Offset   Length
+I (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (73) boot:  2 factory          factory app      00 00 00010000 00100000
+I (80) boot: End of partition table
+I (83) esp_image: segment 0: paddr=00010020 vaddr=3c0b0020 size=21808h (137224) map
+I (115) esp_image: segment 1: paddr=00031830 vaddr=3fc9ab00 size=04a84h ( 19076) load
+I (119) esp_image: segment 2: paddr=000362bc vaddr=40374000 size=09d5ch ( 40284) load
+I (128) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=a878ch (690060) map
+I (250) esp_image: segment 4: paddr=000e87b4 vaddr=4037dd5c size=0ccc8h ( 52424) load
+I (262) esp_image: segment 5: paddr=000f5484 vaddr=50000000 size=00020h (    32) load
+I (271) boot: Loaded app from partition at offset 0x10000
+I (271) boot: Disabling RNG early entropy source...
+I (281) cpu_start: Multicore app
+I (290) cpu_start: Pro cpu start user code
+I (290) cpu_start: cpu freq: 160000000 Hz
+I (290) app_init: Application information:
+I (291) app_init: Project name:     esp32s3_http_client_wifi_bmp180
+I (296) app_init: App version:      1
+I (300) app_init: Compile time:     Oct 14 2026 12:45:00
+I (305) app_init: ELF file SHA256:  0f172522a...
+I (309) app_init: ESP-IDF:          v5.5.1
+I (313) efuse_init: Min chip rev:     v0.0
+I (317) efuse_init: Max chip rev:     v0.99 
+I (321) efuse_init: Chip rev:         v0.2
+I (325) heap_init: Initializing. RAM available for dynamic allocation:
+I (331) heap_init: At 3FCA3940 len 00045DD0 (279 KiB): RAM
+I (336) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (341) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (346) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (353) spi_flash: detected chip: boya
+I (355) spi_flash: flash io: dio
+W (358) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (371) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (377) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (384) main_task: Started on CPU0
+I (404) main_task: Calling app_main()
+I (414) HTTP_TEST: bmp180 init...
+I (414) i2cdev: [Port 0] First initialization. Configuring bus with SDA=20, SCL=21 (Pullups SCL:0 SDA:0)
+W (414) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs
+I (424) i2cdev: [Port 0] Successfully installed I2C master bus (Handle: 0x3fcea054).
+I (434) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (444) i2c.master: I2C transaction unexpected nack detected
+E (454) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (454) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (464) i2cdev: [0x77 at 0] I2C op failed (Try 0, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (474) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (484) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (524) i2cdev: [0x77 at 0] Retrying operation...
+I (524) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (524) i2c.master: I2C transaction unexpected nack detected
+E (524) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (534) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (544) i2cdev: [0x77 at 0] I2C op failed (Try 1, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (554) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (554) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (644) i2cdev: [0x77 at 0] Retrying operation...
+I (644) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (644) i2c.master: I2C transaction unexpected nack detected
+E (644) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (654) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (664) i2cdev: [0x77 at 0] I2C op failed (Try 2, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (674) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (674) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (844) i2cdev: [0x77 at 0] Retrying operation...
+I (844) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (844) i2c.master: I2C transaction unexpected nack detected
+E (844) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (854) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (864) i2cdev: [0x77 at 0] I2C op failed (Try 3, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (874) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (874) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+E (884) i2cdev: [0x77 at 0] I2C operation failed after 4 retries. Last error: 259 (ESP_ERR_INVALID_STATE)
+ESP_ERROR_CHECK failed: esp_err_t 0x103 (ESP_ERR_INVALID_STATE) at 0x4200ade5
+file: "./main/esp32s3_http_client_wifi_bmp180.c" line 50
+func: sensor_init
+expression: bmp180_init(dev)
+
+abort() was called at PC 0x4037c203 on core 0
+
+
+Backtrace: 0x4037c245:0x3fca7310 0x4037c20d:0x3fca7330 0x40384665:0x3fca7350 0x4037c203:0x3fca73c0 0x4200ade5:0x3fca73f0 0x4200b35e:0x3fca7410 0x420a7944:0x3fca7490 0x4037cf35:0x3fca74c0
+
+
+
+
+ELF file SHA256: 0f172522a
+
+Rebooting...
+ø€€ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4037c394
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x158c
+load:0x403c8700,len:0xd24
+load:0x403cb700,len:0x2f34
+entry 0x403c8924
+I (29) boot: ESP-IDF v5.5.1 2nd stage bootloader
+I (29) boot: compile time Oct 14 2026 12:47:31
+I (29) boot: Multicore bootloader
+I (29) boot: chip revision: v0.2
+I (32) boot: efuse block revision: v1.4
+I (36) boot.esp32s3: Boot SPI Speed : 80MHz
+I (40) boot.esp32s3: SPI Mode       : DIO
+I (43) boot.esp32s3: SPI Flash Size : 2MB
+I (47) boot: Enabling RNG early entropy source...
+I (52) boot: Partition Table:
+I (54) boot: ## Label            Usage          Type ST Offset   Length
+I (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (73) boot:  2 factory          factory app      00 00 00010000 00100000
+I (80) boot: End of partition table
+I (83) esp_image: segment 0: paddr=00010020 vaddr=3c0b0020 size=21808h (137224) map
+I (115) esp_image: segment 1: paddr=00031830 vaddr=3fc9ab00 size=04a84h ( 19076) load
+I (119) esp_image: segment 2: paddr=000362bc vaddr=40374000 size=09d5ch ( 40284) load
+I (128) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=a878ch (690060) map
+I (250) esp_image: segment 4: paddr=000e87b4 vaddr=4037dd5c size=0ccc8h ( 52424) load
+I (262) esp_image: segment 5: paddr=000f5484 vaddr=50000000 size=00020h (    32) load
+I (271) boot: Loaded app from partition at offset 0x10000
+I (271) boot: Disabling RNG early entropy source...
+I (281) cpu_start: Multicore app
+I (290) cpu_start: Pro cpu start user code
+I (290) cpu_start: cpu freq: 160000000 Hz
+I (290) app_init: Application information:
+I (291) app_init: Project name:     esp32s3_http_client_wifi_bmp180
+I (296) app_init: App version:      1
+I (300) app_init: Compile time:     Oct 14 2026 12:45:00
+I (305) app_init: ELF file SHA256:  0f172522a...
+I (309) app_init: ESP-IDF:          v5.5.1
+I (313) efuse_init: Min chip rev:     v0.0
+I (317) efuse_init: Max chip rev:     v0.99 
+I (321) efuse_init: Chip rev:         v0.2
+I (325) heap_init: Initializing. RAM available for dynamic allocation:
+I (331) heap_init: At 3FCA3940 len 00045DD0 (279 KiB): RAM
+I (336) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (341) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (346) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (353) spi_flash: detected chip: boya
+I (355) spi_flash: flash io: dio
+W (358) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (371) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (377) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (384) main_task: Started on CPU0
+I (404) main_task: Calling app_main()
+I (414) HTTP_TEST: bmp180 init...
+I (414) i2cdev: [Port 0] First initialization. Configuring bus with SDA=20, SCL=21 (Pullups SCL:0 SDA:0)
+W (414) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs
+I (424) i2cdev: [Port 0] Successfully installed I2C master bus (Handle: 0x3fcea054).
+I (434) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (444) i2c.master: I2C transaction unexpected nack detected
+E (454) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (454) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (464) i2cdev: [0x77 at 0] I2C op failed (Try 0, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (474) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (484) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (524) i2cdev: [0x77 at 0] Retrying operation...
+I (524) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (524) i2c.master: I2C transaction unexpected nack detected
+E (524) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (534) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (544) i2cdev: [0x77 at 0] I2C op failed (Try 1, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (554) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (554) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (644) i2cdev: [0x77 at 0] Retrying operation...
+I (644) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (644) i2c.master: I2C transaction unexpected nack detected
+E (644) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (654) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (664) i2cdev: [0x77 at 0] I2C op failed (Try 2, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (674) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (674) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (844) i2cdev: [0x77 at 0] Retrying operation...
+I (844) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (844) i2c.master: I2C transaction unexpected nack detected
+E (844) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (854) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (864) i2cdev: [0x77 at 0] I2C op failed (Try 3, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (874) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (874) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+E (884) i2cdev: [0x77 at 0] I2C operation failed after 4 retries. Last error: 259 (ESP_ERR_INVALID_STATE)
+ESP_ERROR_CHECK failed: esp_err_t 0x103 (ESP_ERR_INVALID_STATE) at 0x4200ade5
+file: "./main/esp32s3_http_client_wifi_bmp180.c" line 50
+func: sensor_init
+expression: bmp180_init(dev)
+
+abort() was called at PC 0x4037c203 on core 0
+
+
+Backtrace: 0x4037c245:0x3fca7310 0x4037c20d:0x3fca7330 0x40384665:0x3fca7350 0x4037c203:0x3fca73c0 0x4200ade5:0x3fca73f0 0x4200b35e:0x3fca7410 0x420a7944:0x3fca7490 0x4037cf35:0x3fca74c0
+
+
+
+
+ELF file SHA256: 0f172522a
+
+Rebooting...
+ø€€ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4037c394
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x158c
+load:0x403c8700,len:0xd24
+load:0x403cb700,len:0x2f34
+entry 0x403c8924
+I (29) boot: ESP-IDF v5.5.1 2nd stage bootloader
+I (29) boot: compile time Oct 14 2026 12:47:31
+I (29) boot: Multicore bootloader
+I (29) boot: chip revision: v0.2
+I (32) boot: efuse block revision: v1.4
+I (36) boot.esp32s3: Boot SPI Speed : 80MHz
+I (40) boot.esp32s3: SPI Mode       : DIO
+I (43) boot.esp32s3: SPI Flash Size : 2MB
+I (47) boot: Enabling RNG early entropy source...
+I (52) boot: Partition Table:
+I (54) boot: ## Label            Usage          Type ST Offset   Length
+I (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (73) boot:  2 factory          factory app      00 00 00010000 00100000
+I (80) boot: End of partition table
+I (83) esp_image: segment 0: paddr=00010020 vaddr=3c0b0020 size=21808h (137224) map
+I (115) esp_image: segment 1: paddr=00031830 vaddr=3fc9ab00 size=04a84h ( 19076) load
+I (119) esp_image: segment 2: paddr=000362bc vaddr=40374000 size=09d5ch ( 40284) load
+I (128) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=a878ch (690060) map
+I (250) esp_image: segment 4: paddr=000e87b4 vaddr=4037dd5c size=0ccc8h ( 52424) load
+I (262) esp_image: segment 5: paddr=000f5484 vaddr=50000000 size=00020h (    32) load
+I (271) boot: Loaded app from partition at offset 0x10000
+I (271) boot: Disabling RNG early entropy source...
+I (281) cpu_start: Multicore app
+I (290) cpu_start: Pro cpu start user code
+I (290) cpu_start: cpu freq: 160000000 Hz
+I (290) app_init: Application information:
+I (291) app_init: Project name:     esp32s3_http_client_wifi_bmp180
+I (296) app_init: App version:      1
+I (300) app_init: Compile time:     Oct 14 2026 12:45:00
+I (305) app_init: ELF file SHA256:  0f172522a...
+I (309) app_init: ESP-IDF:          v5.5.1
+I (313) efuse_init: Min chip rev:     v0.0
+I (317) efuse_init: Max chip rev:     v0.99 
+I (321) efuse_init: Chip rev:         v0.2
+I (325) heap_init: Initializing. RAM available for dynamic allocation:
+I (331) heap_init: At 3FCA3940 len 00045DD0 (279 KiB): RAM
+I (336) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (341) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (346) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (353) spi_flash: detected chip: boya
+I (355) spi_flash: flash io: dio
+W (358) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (371) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (377) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (384) main_task: Started on CPU0
+I (404) main_task: Calling app_main()
+I (414) HTTP_TEST: bmp180 init...
+I (414) i2cdev: [Port 0] First initialization. Configuring bus with SDA=20, SCL=21 (Pullups SCL:0 SDA:0)
+W (414) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs
+I (424) i2cdev: [Port 0] Successfully installed I2C master bus (Handle: 0x3fcea054).
+I (434) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (444) i2c.master: I2C transaction unexpected nack detected
+E (454) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (454) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (464) i2cdev: [0x77 at 0] I2C op failed (Try 0, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (474) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (484) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (524) i2cdev: [0x77 at 0] Retrying operation...
+I (524) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (524) i2c.master: I2C transaction unexpected nack detected
+E (524) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (534) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (544) i2cdev: [0x77 at 0] I2C op failed (Try 1, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (554) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (554) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (644) i2cdev: [0x77 at 0] Retrying operation...
+I (644) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (644) i2c.master: I2C transaction unexpected nack detected
+E (644) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (654) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (664) i2cdev: [0x77 at 0] I2C op failed (Try 2, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (674) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (674) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (844) i2cdev: [0x77 at 0] Retrying operation...
+I (844) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (844) i2c.master: I2C transaction unexpected nack detected
+E (844) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (854) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (864) i2cdev: [0x77 at 0] I2C op failed (Try 3, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (874) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (874) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+E (884) i2cdev: [0x77 at 0] I2C operation failed after 4 retries. Last error: 259 (ESP_ERR_INVALID_STATE)
+ESP_ERROR_CHECK failed: esp_err_t 0x103 (ESP_ERR_INVALID_STATE) at 0x4200ade5
+file: "./main/esp32s3_http_client_wifi_bmp180.c" line 50
+func: sensor_init
+expression: bmp180_init(dev)
+
+abort() was called at PC 0x4037c203 on core 0
+
+
+Backtrace: 0x4037c245:0x3fca7310 0x4037c20d:0x3fca7330 0x40384665:0x3fca7350 0x4037c203:0x3fca73c0 0x4200ade5:0x3fca73f0 0x4200b35e:0x3fca7410 0x420a7944:0x3fca7490 0x4037cf35:0x3fca74c0
+
+
+
+
+ELF file SHA256: 0f172522a
+
+Rebooting...
+ø€€ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4037c394
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x158c
+load:0x403c8700,len:0xd24
+load:0x403cb700,len:0x2f34
+entry 0x403c8924
+I (29) boot: ESP-IDF v5.5.1 2nd stage bootloader
+I (29) boot: compile time Oct 14 2026 12:47:31
+I (29) boot: Multicore bootloader
+I (29) boot: chip revision: v0.2
+I (32) boot: efuse block revision: v1.4
+I (36) boot.esp32s3: Boot SPI Speed : 80MHz
+I (40) boot.esp32s3: SPI Mode       : DIO
+I (43) boot.esp32s3: SPI Flash Size : 2MB
+I (47) boot: Enabling RNG early entropy source...
+I (52) boot: Partition Table:
+I (54) boot: ## Label            Usage          Type ST Offset   Length
+I (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (73) boot:  2 factory          factory app      00 00 00010000 00100000
+I (80) boot: End of partition table
+I (83) esp_image: segment 0: paddr=00010020 vaddr=3c0b0020 size=21808h (137224) map
+I (115) esp_image: segment 1: paddr=00031830 vaddr=3fc9ab00 size=04a84h ( 19076) load
+I (119) esp_image: segment 2: paddr=000362bc vaddr=40374000 size=09d5ch ( 40284) load
+I (128) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=a878ch (690060) map
+I (250) esp_image: segment 4: paddr=000e87b4 vaddr=4037dd5c size=0ccc8h ( 52424) load
+I (262) esp_image: segment 5: paddr=000f5484 vaddr=50000000 size=00020h (    32) load
+I (271) boot: Loaded app from partition at offset 0x10000
+I (271) boot: Disabling RNG early entropy source...
+I (281) cpu_start: Multicore app
+I (290) cpu_start: Pro cpu start user code
+I (290) cpu_start: cpu freq: 160000000 Hz
+I (290) app_init: Application information:
+I (291) app_init: Project name:     esp32s3_http_client_wifi_bmp180
+I (296) app_init: App version:      1
+I (300) app_init: Compile time:     Oct 14 2026 12:45:00
+I (305) app_init: ELF file SHA256:  0f172522a...
+I (309) app_init: ESP-IDF:          v5.5.1
+I (313) efuse_init: Min chip rev:     v0.0
+I (317) efuse_init: Max chip rev:     v0.99 
+I (321) efuse_init: Chip rev:         v0.2
+I (325) heap_init: Initializing. RAM available for dynamic allocation:
+I (331) heap_init: At 3FCA3940 len 00045DD0 (279 KiB): RAM
+I (336) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (341) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (346) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (353) spi_flash: detected chip: boya
+I (355) spi_flash: flash io: dio
+W (358) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (371) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (377) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (384) main_task: Started on CPU0
+I (404) main_task: Calling app_main()
+I (414) HTTP_TEST: bmp180 init...
+I (414) i2cdev: [Port 0] First initialization. Configuring bus with SDA=20, SCL=21 (Pullups SCL:0 SDA:0)
+W (414) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs
+I (424) i2cdev: [Port 0] Successfully installed I2C master bus (Handle: 0x3fcea054).
+I (434) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (444) i2c.master: I2C transaction unexpected nack detected
+E (454) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (454) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (464) i2cdev: [0x77 at 0] I2C op failed (Try 0, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (474) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (484) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (524) i2cdev: [0x77 at 0] Retrying operation...
+I (524) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (524) i2c.master: I2C transaction unexpected nack detected
+E (524) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (534) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (544) i2cdev: [0x77 at 0] I2C op failed (Try 1, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (554) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (554) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (644) i2cdev: [0x77 at 0] Retrying operation...
+I (644) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (644) i2c.master: I2C transaction unexpected nack detected
+E (644) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (654) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (664) i2cdev: [0x77 at 0] I2C op failed (Try 2, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (674) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (674) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (844) i2cdev: [0x77 at 0] Retrying operation...
+I (844) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (844) i2c.master: I2C transaction unexpected nack detected
+E (844) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (854) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (864) i2cdev: [0x77 at 0] I2C op failed (Try 3, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (874) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (874) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+E (884) i2cdev: [0x77 at 0] I2C operation failed after 4 retries. Last error: 259 (ESP_ERR_INVALID_STATE)
+ESP_ERROR_CHECK failed: esp_err_t 0x103 (ESP_ERR_INVALID_STATE) at 0x4200ade5
+file: "./main/esp32s3_http_client_wifi_bmp180.c" line 50
+func: sensor_init
+expression: bmp180_init(dev)
+
+abort() was called at PC 0x4037c203 on core 0
+
+
+Backtrace: 0x4037c245:0x3fca7310 0x4037c20d:0x3fca7330 0x40384665:0x3fca7350 0x4037c203:0x3fca73c0 0x4200ade5:0x3fca73f0 0x4200b35e:0x3fca7410 0x420a7944:0x3fca7490 0x4037cf35:0x3fca74c0
+
+
+
+
+ELF file SHA256: 0f172522a
+
+Rebooting...
+ø€€ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4037c394
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x158c
+load:0x403c8700,len:0xd24
+load:0x403cb700,len:0x2f34
+entry 0x403c8924
+I (29) boot: ESP-IDF v5.5.1 2nd stage bootloader
+I (29) boot: compile time Oct 14 2026 12:47:31
+I (29) boot: Multicore bootloader
+I (29) boot: chip revision: v0.2
+I (32) boot: efuse block revision: v1.4
+I (36) boot.esp32s3: Boot SPI Speed : 80MHz
+I (40) boot.esp32s3: SPI Mode       : DIO
+I (43) boot.esp32s3: SPI Flash Size : 2MB
+I (47) boot: Enabling RNG early entropy source...
+I (52) boot: Partition Table:
+I (54) boot: ## Label            Usage          Type ST Offset   Length
+I (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (73) boot:  2 factory          factory app      00 00 00010000 00100000
+I (80) boot: End of partition table
+I (83) esp_image: segment 0: paddr=00010020 vaddr=3c0b0020 size=21808h (137224) map
+I (115) esp_image: segment 1: paddr=00031830 vaddr=3fc9ab00 size=04a84h ( 19076) load
+I (119) esp_image: segment 2: paddr=000362bc vaddr=40374000 size=09d5ch ( 40284) load
+I (128) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=a878ch (690060) map
+I (250) esp_image: segment 4: paddr=000e87b4 vaddr=4037dd5c size=0ccc8h ( 52424) load
+I (262) esp_image: segment 5: paddr=000f5484 vaddr=50000000 size=00020h (    32) load
+I (271) boot: Loaded app from partition at offset 0x10000
+I (271) boot: Disabling RNG early entropy source...
+I (281) cpu_start: Multicore app
+I (290) cpu_start: Pro cpu start user code
+I (290) cpu_start: cpu freq: 160000000 Hz
+I (290) app_init: Application information:
+I (291) app_init: Project name:     esp32s3_http_client_wifi_bmp180
+I (296) app_init: App version:      1
+I (300) app_init: Compile time:     Oct 14 2026 12:45:00
+I (305) app_init: ELF file SHA256:  0f172522a...
+I (309) app_init: ESP-IDF:          v5.5.1
+I (313) efuse_init: Min chip rev:     v0.0
+I (317) efuse_init: Max chip rev:     v0.99 
+I (321) efuse_init: Chip rev:         v0.2
+I (325) heap_init: Initializing. RAM available for dynamic allocation:
+I (331) heap_init: At 3FCA3940 len 00045DD0 (279 KiB): RAM
+I (336) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (341) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (346) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (353) spi_flash: detected chip: boya
+I (355) spi_flash: flash io: dio
+W (358) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (371) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (377) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (384) main_task: Started on CPU0
+I (404) main_task: Calling app_main()
+I (414) HTTP_TEST: bmp180 init...
+I (414) i2cdev: [Port 0] First initialization. Configuring bus with SDA=20, SCL=21 (Pullups SCL:0 SDA:0)
+W (414) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs
+I (424) i2cdev: [Port 0] Successfully installed I2C master bus (Handle: 0x3fcea054).
+I (434) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (444) i2c.master: I2C transaction unexpected nack detected
+E (454) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (454) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (464) i2cdev: [0x77 at 0] I2C op failed (Try 0, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (474) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (484) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (524) i2cdev: [0x77 at 0] Retrying operation...
+I (524) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (524) i2c.master: I2C transaction unexpected nack detected
+E (524) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (534) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (544) i2cdev: [0x77 at 0] I2C op failed (Try 1, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (554) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (554) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (644) i2cdev: [0x77 at 0] Retrying operation...
+I (644) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (644) i2c.master: I2C transaction unexpected nack detected
+E (644) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (654) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (664) i2cdev: [0x77 at 0] I2C op failed (Try 2, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (674) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (674) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (844) i2cdev: [0x77 at 0] Retrying operation...
+I (844) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (844) i2c.master: I2C transaction unexpected nack detected
+E (844) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (854) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (864) i2cdev: [0x77 at 0] I2C op failed (Try 3, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (874) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (874) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+E (884) i2cdev: [0x77 at 0] I2C operation failed after 4 retries. Last error: 259 (ESP_ERR_INVALID_STATE)
+ESP_ERROR_CHECK failed: esp_err_t 0x103 (ESP_ERR_INVALID_STATE) at 0x4200ade5
+file: "./main/esp32s3_http_client_wifi_bmp180.c" line 50
+func: sensor_init
+expression: bmp180_init(dev)
+
+abort() was called at PC 0x4037c203 on core 0
+
+
+Backtrace: 0x4037c245:0x3fca7310 0x4037c20d:0x3fca7330 0x40384665:0x3fca7350 0x4037c203:0x3fca73c0 0x4200ade5:0x3fca73f0 0x4200b35e:0x3fca7410 0x420a7944:0x3fca7490 0x4037cf35:0x3fca74c0
+
+
+
+
+ELF file SHA256: 0f172522a
+
+Rebooting...
+ø€€ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4037c394
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x158c
+load:0x403c8700,len:0xd24
+load:0x403cb700,len:0x2f34
+entry 0x403c8924
+I (29) boot: ESP-IDF v5.5.1 2nd stage bootloader
+I (29) boot: compile time Oct 14 2026 12:47:31
+I (29) boot: Multicore bootloader
+I (29) boot: chip revision: v0.2
+I (32) boot: efuse block revision: v1.4
+I (36) boot.esp32s3: Boot SPI Speed : 80MHz
+I (40) boot.esp32s3: SPI Mode       : DIO
+I (43) boot.esp32s3: SPI Flash Size : 2MB
+I (47) boot: Enabling RNG early entropy source...
+I (52) boot: Partition Table:
+I (54) boot: ## Label            Usage          Type ST Offset   Length
+I (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (73) boot:  2 factory          factory app      00 00 00010000 00100000
+I (80) boot: End of partition table
+I (83) esp_image: segment 0: paddr=00010020 vaddr=3c0b0020 size=21808h (137224) map
+I (115) esp_image: segment 1: paddr=00031830 vaddr=3fc9ab00 size=04a84h ( 19076) load
+I (119) esp_image: segment 2: paddr=000362bc vaddr=40374000 size=09d5ch ( 40284) load
+I (128) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=a878ch (690060) map
+I (250) esp_image: segment 4: paddr=000e87b4 vaddr=4037dd5c size=0ccc8h ( 52424) load
+I (262) esp_image: segment 5: paddr=000f5484 vaddr=50000000 size=00020h (    32) load
+I (271) boot: Loaded app from partition at offset 0x10000
+I (271) boot: Disabling RNG early entropy source...
+I (281) cpu_start: Multicore app
+I (290) cpu_start: Pro cpu start user code
+I (290) cpu_start: cpu freq: 160000000 Hz
+I (290) app_init: Application information:
+I (291) app_init: Project name:     esp32s3_http_client_wifi_bmp180
+I (296) app_init: App version:      1
+I (300) app_init: Compile time:     Oct 14 2026 12:45:00
+I (305) app_init: ELF file SHA256:  0f172522a...
+I (309) app_init: ESP-IDF:          v5.5.1
+I (313) efuse_init: Min chip rev:     v0.0
+I (317) efuse_init: Max chip rev:     v0.99 
+I (321) efuse_init: Chip rev:         v0.2
+I (325) heap_init: Initializing. RAM available for dynamic allocation:
+I (331) heap_init: At 3FCA3940 len 00045DD0 (279 KiB): RAM
+I (336) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (341) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (346) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (353) spi_flash: detected chip: boya
+I (355) spi_flash: flash io: dio
+W (358) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (371) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (377) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (384) main_task: Started on CPU0
+I (404) main_task: Calling app_main()
+I (414) HTTP_TEST: bmp180 init...
+I (414) i2cdev: [Port 0] First initialization. Configuring bus with SDA=20, SCL=21 (Pullups SCL:0 SDA:0)
+W (414) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs
+I (424) i2cdev: [Port 0] Successfully installed I2C master bus (Handle: 0x3fcea054).
+I (434) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (444) i2c.master: I2C transaction unexpected nack detected
+E (454) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (454) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (464) i2cdev: [0x77 at 0] I2C op failed (Try 0, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (474) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (484) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (524) i2cdev: [0x77 at 0] Retrying operation...
+I (524) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (524) i2c.master: I2C transaction unexpected nack detected
+E (524) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (534) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (544) i2cdev: [0x77 at 0] I2C op failed (Try 1, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (554) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (554) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (644) i2cdev: [0x77 at 0] Retrying operation...
+I (644) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (644) i2c.master: I2C transaction unexpected nack detected
+E (644) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (654) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (664) i2cdev: [0x77 at 0] I2C op failed (Try 2, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (674) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (674) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (844) i2cdev: [0x77 at 0] Retrying operation...
+I (844) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (844) i2c.master: I2C transaction unexpected nack detected
+E (844) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (854) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (864) i2cdev: [0x77 at 0] I2C op failed (Try 3, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (874) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (874) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+E (884) i2cdev: [0x77 at 0] I2C operation failed after 4 retries. Last error: 259 (ESP_ERR_INVALID_STATE)
+ESP_ERROR_CHECK failed: esp_err_t 0x103 (ESP_ERR_INVALID_STATE) at 0x4200ade5
+file: "./main/esp32s3_http_client_wifi_bmp180.c" line 50
+func: sensor_init
+expression: bmp180_init(dev)
+
+abort() was called at PC 0x4037c203 on core 0
+
+
+Backtrace: 0x4037c245:0x3fca7310 0x4037c20d:0x3fca7330 0x40384665:0x3fca7350 0x4037c203:0x3fca73c0 0x4200ade5:0x3fca73f0 0x4200b35e:0x3fca7410 0x420a7944:0x3fca7490 0x4037cf35:0x3fca74c0
+
+
+
+
+ELF file SHA256: 0f172522a
+
+Rebooting...
+ø€€ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4037c394
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x158c
+load:0x403c8700,len:0xd24
+load:0x403cb700,len:0x2f34
+entry 0x403c8924
+I (29) boot: ESP-IDF v5.5.1 2nd stage bootloader
+I (29) boot: compile time Oct 14 2026 12:47:31
+I (29) boot: Multicore bootloader
+I (29) boot: chip revision: v0.2
+I (32) boot: efuse block revision: v1.4
+I (36) boot.esp32s3: Boot SPI Speed : 80MHz
+I (40) boot.esp32s3: SPI Mode       : DIO
+I (43) boot.esp32s3: SPI Flash Size : 2MB
+I (47) boot: Enabling RNG early entropy source...
+I (52) boot: Partition Table:
+I (54) boot: ## Label            Usage          Type ST Offset   Length
+I (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (73) boot:  2 factory          factory app      00 00 00010000 00100000
+I (80) boot: End of partition table
+I (83) esp_image: segment 0: paddr=00010020 vaddr=3c0b0020 size=21808h (137224) map
+I (115) esp_image: segment 1: paddr=00031830 vaddr=3fc9ab00 size=04a84h ( 19076) load
+I (119) esp_image: segment 2: paddr=000362bc vaddr=40374000 size=09d5ch ( 40284) load
+I (128) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=a878ch (690060) map
+I (250) esp_image: segment 4: paddr=000e87b4 vaddr=4037dd5c size=0ccc8h ( 52424) load
+I (262) esp_image: segment 5: paddr=000f5484 vaddr=50000000 size=00020h (    32) load
+I (271) boot: Loaded app from partition at offset 0x10000
+I (271) boot: Disabling RNG early entropy source...
+I (281) cpu_start: Multicore app
+I (290) cpu_start: Pro cpu start user code
+I (290) cpu_start: cpu freq: 160000000 Hz
+I (290) app_init: Application information:
+I (291) app_init: Project name:     esp32s3_http_client_wifi_bmp180
+I (296) app_init: App version:      1
+I (300) app_init: Compile time:     Oct 14 2026 12:45:00
+I (305) app_init: ELF file SHA256:  0f172522a...
+I (309) app_init: ESP-IDF:          v5.5.1
+I (313) efuse_init: Min chip rev:     v0.0
+I (317) efuse_init: Max chip rev:     v0.99 
+I (321) efuse_init: Chip rev:         v0.2
+I (325) heap_init: Initializing. RAM available for dynamic allocation:
+I (331) heap_init: At 3FCA3940 len 00045DD0 (279 KiB): RAM
+I (336) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (341) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (346) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (353) spi_flash: detected chip: boya
+I (355) spi_flash: flash io: dio
+W (358) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (371) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (377) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (384) main_task: Started on CPU0
+I (404) main_task: Calling app_main()
+I (414) HTTP_TEST: bmp180 init...
+I (414) i2cdev: [Port 0] First initialization. Configuring bus with SDA=20, SCL=21 (Pullups SCL:0 SDA:0)
+W (414) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs
+I (424) i2cdev: [Port 0] Successfully installed I2C master bus (Handle: 0x3fcea054).
+I (434) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (444) i2c.master: I2C transaction unexpected nack detected
+E (454) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (454) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (464) i2cdev: [0x77 at 0] I2C op failed (Try 0, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (474) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (484) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (524) i2cdev: [0x77 at 0] Retrying operation...
+I (524) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (524) i2c.master: I2C transaction unexpected nack detected
+E (524) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (534) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (544) i2cdev: [0x77 at 0] I2C op failed (Try 1, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (554) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (554) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (644) i2cdev: [0x77 at 0] Retrying operation...
+I (644) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (644) i2c.master: I2C transaction unexpected nack detected
+E (644) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (654) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (664) i2cdev: [0x77 at 0] I2C op failed (Try 2, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (674) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (674) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+W (844) i2cdev: [0x77 at 0] Retrying operation...
+I (844) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3fcea50c, Speed: 1000000 Hz).
+E (844) i2c.master: I2C transaction unexpected nack detected
+E (844) i2c.master: s_i2c_synchronous_transaction(945): I2C transaction failed
+E (854) i2c.master: i2c_master_transmit_receive(1248): I2C transaction failed
+W (864) i2cdev: [0x77 at 0] I2C op failed (Try 3, Handle 0x3fcea50c): 259 (ESP_ERR_INVALID_STATE).
+W (874) i2cdev: [0x77 at 0] Invalid state error - handle may need recreation
+W (874) i2cdev: [0x77 at 0] Removing potentially corrupted device handle 0x3fcea50c after permanent error
+E (884) i2cdev: [0x77 at 0] I2C operation failed after 4 retries. Last error: 259 (ESP_ERR_INVALID_STATE)
+ESP_ERROR_CHECK failed: esp_err_t 0x103 (ESP_ERR_INVALID_STATE) at 0x4200ade5
+file: "./main/esp32s3_http_client_wifi_bmp180.c" line 50
+func: sensor_init
+expression: bmp180_init(dev)
+
+abort() was called at PC 0x4037c203 on core 0
+
+
+Backtrace: 0x4037c245:0x3fca7310 0x4037c20d:0x3fca7330 0x40384665:0x3fca7350 0x4037c203:0x3fca73c0 0x4200ade5:0x3fca73f0 0x4200b35e:0x3fca7410 0x420a7944:0x3fca7490 0x4037cf35:0x3fca74c0
+
+
+
+
+ELF file SHA256: 0f172522a
+
+Rebooting...
+ø€€ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4037c394
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x158c
+load:0x403c8700,len:0xd24
+load:0x403cb700,len:0x2f34
+entry 0x403c8924
+I (29) boot: ESP-IDF v5.5.1 2nd stage bootloader
+I (29) boot: compile time Oct 14 2026 12:47:31
+I (29) boot: Multicore bootloader
+I (29) boot: chip revision: v0.2
+I (32) boot: efuse block revision: v1.4
+I (36) boot.esp32s3: Boot SPI Speed : 80MHz
+I (40) boot.esp32s3: SPI Mode       : DIO
+I (43) boot.esp32s3: SPI Flash Size : 2MB
+I (47) boot: Enabling RNG early entropy source...
+I (52) boot: Partition Table:
+I (54) boot: ## Label            Usage          Type ST Offset   Length
+I (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (73) boot:  2 factory          factory app      00 00 00010000 00100000
+I (80) boot: End of partition table
+I (83) esp_image: segment 0: paddr=00010020 vaddr=3c0b0020 size=21808h (137224) map
+I (115) esp_image: segment 1: paddr=00031830 vaddr=3fc9ab00 size=04a84h ( 19076) load
+I (119) esp_image: segment 2: paddr=000362bc vaddr=40374000 size=09d5ch ( 40284) load
+I (128) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=a878ch (690060) map
+I (250) esp_image: segment 4: paddr=000e87b4 vaddr=4037dd5c size=0ccc8h ( 52424) load
+I (262) esp_image: segment 5: paddr=000f5484 vaddr=50000000 size=00020h (    32) load
+I (271) boot: Loaded app from partition at offset 0x10000
+I (271) boot: Disabling RNG early entropy source...
+I (281) cpu_start: Multicore app
+I (290) cpu_start: Pro cpu start user code
+I (290) cpu_start: cpu freq: 160000000 Hz
+I (290) app_init: Application information:
+I (291) app_init: Project name:     esp32s3_http_client_wifi_bmp180
+I (296) app_init: App version:      1
+I (300) app_init: Compile time:     Oct 14 2026 12:45:00
+I (305) app_init: ELF file SHA256:  0f172522a...
+I (309) app_init: ESP-IDF:          v5.5.1
+I (313) efuse_init: Min chip rev:     v0.0
+I (317) efuse_init: Max chip rev:     v0.99 
+I (321) efuse_init: Chip rev:         v0.2
+I (325) heap_init: Initializing. RAM available for dynamic allocation:
+I (331) heap_init: At 3FCA3940 len 00045DD0 (279 KiB): RAM
+I (336) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (341) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (346) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (353) spi_flash: detected chip: boya
+I (355) spi_flash: flash io: dio
+W (358) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (371) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (377) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (384) main_task: Started on CPU0
+I (404) main_task: Calling app_main()
+I (414) HTTP_TEST: bmp180 init...
+I (414) i2cdev: [Port 0] First initialization. Configuring bus with SDA=20, SCL=21 (Pullups SCL:0 SDA:0)
+W (414) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise une
