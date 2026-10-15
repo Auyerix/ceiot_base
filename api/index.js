@@ -33,6 +33,7 @@ async function getMeasurements() {
     return await database.collection(collectionName).find({}).toArray();	
 }
 
+//agregado de datos desde Open-Mateo
 async function insertExternalWeatherMeasurement() {
     if (weatherRequestInProgress) return;
 
@@ -77,6 +78,7 @@ app.use(express.static('spa/static'));
 
 const PORT = 8080;
 
+//app modificada async y agregado de recepción de deviceTimestamp y devolución de errores
 app.post('/measurement', async function (req, res) {
     try {
         // Keep server reception time and optional device time separately.
@@ -181,7 +183,7 @@ app.get('/device', function(req,res) {
 
 
 
-/// Nuevo endpoint
+/// Nuevo endpoint para recibir json
 app.post('/measurements', async function (req, res) {
     try {
         const measurements = req.body;

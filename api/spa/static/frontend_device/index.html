@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Dispositivos · CEIOT</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./"><span class="brand-icon" aria-hidden="true">◈</span> CEIOT <span class="brand-caption">/ dispositivos</span></a>
+    <span class="badge">Laboratorio IoT</span>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div><p class="eyebrow">TU ESPACIO CONECTADO</p><h1 id="page-title">Pequeños dispositivos.<br><span>Grandes posibilidades.</span></h1><p class="intro">Registrá tus sensores y organizá tus dispositivos desde un solo lugar.</p><a class="button hero-button" href="#device-id">+ Agregar dispositivo</a></div>
+      <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="chip">◈<small>CEIOT</small></div><span class="satellite satellite-one">◉</span><span class="satellite satellite-two">⌁</span><span class="satellite satellite-three">+</span></div>
+    </section>
+    <div class="workspace">
+      <section class="panel register" aria-labelledby="form-title">
+        <span class="section-icon" aria-hidden="true">+</span><p class="eyebrow">CONECTÁ ALGO NUEVO</p><h2 id="form-title">Agregar dispositivo</h2><p class="muted">Completá los datos para registrarlo.</p>
+        <form id="device-form">
+          <label for="device-id">Identificador</label><input id="device-id" name="id" placeholder="Ej. 02" required autocomplete="off" aria-describedby="id-help"><small id="id-help">Usá el mismo ID que configuraste en tu dispositivo.</small>
+          <label for="device-name">Nombre</label><input id="device-name" name="n" placeholder="Ej. Sensor del living" required autocomplete="off">
+          <label for="device-key">Clave</label><div class="password-field"><input id="device-key" name="k" type="password" placeholder="Clave del dispositivo" required autocomplete="new-password"><button id="toggle-key" type="button" aria-controls="device-key" aria-pressed="false">Mostrar</button></div>
+          <p id="form-message" class="message" role="status" aria-live="polite"></p>
+          <button id="submit-device" class="button primary" type="submit">+ Registrar dispositivo</button>
+        </form>
+        <p class="footnote">Entorno de pruebas: los registros se reinician al reiniciar la API.</p>
+      </section>
+      <section class="devices-section" aria-labelledby="list-title">
+        <div class="list-heading"><div><p class="eyebrow">EXPLORÁ TU RED</p><h2 id="list-title">Mis dispositivos <span id="device-count" class="count">—</span></h2></div><button id="refresh" class="secondary" type="button">↻ Actualizar</button></div>
+        <label class="sr-only" for="search">Buscar por nombre o identificador</label><input id="search" class="search" type="search" placeholder="Buscar por nombre o identificador…">
+        <p id="list-message" class="message" role="status" aria-live="polite"></p>
+        <div id="device-list" class="device-grid" aria-busy="false"></div>
+      </section>
+    </div>
+    <footer>CEIOT <span>Un lugar para cada dispositivo.</span></footer>
+  </main>
+</body>
+</html>
